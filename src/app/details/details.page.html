@@ -1,0 +1,82 @@
+<ion-header>
+    <ion-toolbar class="header">
+      <ion-buttons slot="start">
+        <ion-back-button color="light"></ion-back-button>
+      </ion-buttons>
+      <ion-title>My R Pocket</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding class="body">
+      <img [src]="getURL()"/>
+    <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle></ion-card-subtitle>
+      <ion-card-title>Receipt Details</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <!-- <ion-item>
+          <p>
+            {{result.blocks.blocktext}}
+          </p>
+      </ion-item>
+      <ion-item>
+          <p>
+            {{details.date}}
+          </p>
+      </ion-item> -->
+      <ion-item>
+        <ion-label position="stacked">Store Name</ion-label>
+        <ion-input type="text" placeholder="Store Name" [(ngModel)]="details.store"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Date</ion-label>
+        <ion-input type="text" placeholder="Date" [(ngModel)]="details.date"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Place</ion-label>
+        <ion-textarea placeholder="Place" [(ngModel)]="details.place"> </ion-textarea>
+        <!-- <ion-input type="text" placeholder="Place" [(ngModel)]="details.place"></ion-input> -->
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Category</ion-label>
+        <ion-input type="text" placeholder="Category" [(ngModel)]="details.category"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Total(RM)</ion-label>
+        <ion-input type="text" placeholder="Total" [(ngModel)]="details.total"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Tags</ion-label>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="9">
+                <ion-input type="text" placeholder="Tags" [(ngModel)]="tag"></ion-input>
+            </ion-col>
+            <ion-col size="3">
+                <ion-button color="tertiary" (click)="addTags()">
+                    <ion-icon name="add-circle"></ion-icon>
+                </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <div class="tag">
+          <div text-center class="tags" *ngFor="let t of details.tags;let i = index" (click)="rmTags(i)">{{t}}</div>
+      </div>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+              <ion-button color="danger" expand="block" (click)="delete()" *ngIf="deletIf()">Delete</ion-button>
+          </ion-col>
+          <ion-col>
+              <ion-button color="success" expand="block" (click)="save()">Save</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <br/>
+      <br/>
+    </ion-card-content>
+  </ion-card>
+  </ion-content>
+  

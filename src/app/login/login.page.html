@@ -1,0 +1,39 @@
+<!-- <ion-header>
+  <ion-toolbar class="header">
+    <ion-title>My R Pocket</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content padding class="body">
+    <img class="logo" src="assets/image/logo.jpeg"/>
+  <ion-card>
+  <ion-card-header>
+    <ion-card-title>Sign In</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input type="text" placeholder="Email" [(ngModel)]="user.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Password</ion-label>
+      <ion-input type="password" placeholder="Password" [(ngModel)]="user.password"></ion-input>
+    </ion-item>
+  </ion-card-content>
+</ion-card>
+<ion-grid>
+  <ion-row>
+    <ion-col>
+        <ion-button color="success" expand="block" routerLink="/signup">
+          Sign Up
+        </ion-button>
+    </ion-col>
+    <ion-col>
+        <ion-button color="tertiary" expand="block" (click)="login()">
+          Sign In
+        </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>
