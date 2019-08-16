@@ -98,12 +98,25 @@ export class FirebaseService {
     }
   }
 
-  readReceipt(uid){
-    return this.afstore.collection("receipts", ref =>ref.where("uid", "==", uid)).valueChanges();
+  async readReceipt(){
+    const user = await this.afauth.authState.pipe(first()).toPromise();
+    return this.afstore.collection("receipts", ref =>ref.where("uid", "==", user.uid)).snapshotChanges();
   }
 
-  updateReceipt(details, id){
-    return this.afstore.doc('receipts/' + id).set(details);
+  async updateReceipt(details, id){
+    try{
+      delete details.id;
+      const rec = await this.afstore.doc('receipts/' + id).set(details);
+      return {
+        value: rec,
+        success: true
+      }
+    } catch (err){
+      return {
+        value: err.message,
+        success: false
+      }
+    }
   }
 
   deleteReceipt(){

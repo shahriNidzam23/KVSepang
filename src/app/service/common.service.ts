@@ -8,6 +8,7 @@ import { LoadingController } from '@ionic/angular';
 export class CommonService {
   image:any;
   deatildId:any;
+  receipt:any;
   constructor(
     private alertController: AlertController,
     private loadingController: LoadingController
@@ -45,6 +46,14 @@ export class CommonService {
 
   setDetailId(deatildId){
     this.deatildId = deatildId;
+  }
+
+  setReceipt(receipt){
+    this.receipt = receipt;
+  }
+
+  getReceipt(){
+    return this.receipt;
   }
 
   getDetailId(){

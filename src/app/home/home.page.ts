@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { CommonService } from '../service/common.service';
 import { LoadingController, ActionSheetController } from '@ionic/angular';
 import { FirebaseService } from '../service/firebase.service';
-import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +12,7 @@ import { finalize } from 'rxjs/operators';
 })
 export class HomePage {
 
+  receipts:any;
   constructor(
     private camera: Camera,
     private router: Router,
@@ -20,10 +20,33 @@ export class HomePage {
     public loadingController: LoadingController,
     private actionSheetController: ActionSheetController,
     private fb: FirebaseService
-    ) {}
+    ) {
+      this.subscribeToReceipt();
+    }
 
-  toDetails(id){
-    this.common.setDetailId(id);
+    async subscribeToReceipt(){
+      let loading = await this.common.loading();
+      loading.present();
+      this.receipts = [];
+      let receipt = await this.fb.readReceipt();
+
+      receipt.subscribe(res => {
+        console.log(res);
+        this.receipts = [];  
+        res.map(r => {        
+          let temp = Object.assign({id:r.payload.doc.id}, r.payload.doc.data());
+          console.log(temp);
+          this.receipts.push(temp);
+        });
+        loading.dismiss();
+        // this.receipts = res;
+        console.log(this.receipts)
+      });
+    }
+
+  toDetails(obj){
+    this.common.setDetailId(obj.id);
+    this.common.setReceipt(obj);
     this.router.navigate(['/details']);
   }
 

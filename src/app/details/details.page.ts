@@ -28,7 +28,7 @@ export class DetailsPage implements OnInit {
     if(this.detaildId == '0' || this.detaildId == 0){
       this.readImage();
     } else {
-
+      this.details = this.common.getReceipt();
     }
   }
 
@@ -78,7 +78,7 @@ export class DetailsPage implements OnInit {
             const receipt = await this.fb.uploadToDB(this.details);
             if(receipt.success){
               loading.dismiss();
-              this.common.presentAlert("Success", "Receipt details successfully");
+              this.common.presentAlert("Success", "Receipt details successfully saved");
             } else {
               loading.dismiss();
               this.common.presentAlert("Error", receipt.value);
@@ -94,6 +94,13 @@ export class DetailsPage implements OnInit {
         break;
       default:
           const update = await this.fb.updateReceipt(this.details, this.detaildId);
+          if(update.success){
+            loading.dismiss();
+            this.common.presentAlert("Success", "Receipt details successfully updated");
+          } else {
+            loading.dismiss();
+            this.common.presentAlert("Error", update.value);
+          }
           loading.dismiss();
         break;
     }
@@ -105,8 +112,12 @@ export class DetailsPage implements OnInit {
   }
 
   getURL(){
-    return 'data:image/jpeg;base64,' + this.common.getImage();
-    //return this.wv.convertFileSrc(this.common.getImage());
+    
+    if(this.detaildId == '0' || this.detaildId == 0){
+      return 'data:image/jpeg;base64,' + this.common.getImage();
+    } else {
+      return this.details.img;
+    }
   }
 
   readImage(){

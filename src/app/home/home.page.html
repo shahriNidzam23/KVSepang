@@ -14,22 +14,22 @@
           <ion-icon name="camera"></ion-icon>
         </ion-fab-button>
       </ion-fab>
-<ion-card>
+<ion-card *ngFor="let item of receipts">
     <ion-card-content>
       <ion-card-title>
-          H&M
+          {{item.store}}
         </ion-card-title>
         <ion-card-subtitle>
           <ion-list>
             <ion-item>
-              <p>Wednesday</p>
+              <p>{{item.category}}</p>
             </ion-item>
             <ion-item>
-              <p>03/04/2019</p>
-              <ion-note slot="end">RM48</ion-note>
+              <p>{{item.date}}</p>
+              <ion-note slot="end">RM{{item.total}}</ion-note>
             </ion-item>
             <br/>
-            <ion-button color="tertiary" (click)="toDetails('id1sdnbj2')" expand="block">See Details</ion-button>
+            <ion-button color="tertiary" (click)="toDetails(item)" expand="block">See Details</ion-button>
           </ion-list>
         </ion-card-subtitle>
     </ion-card-content>
