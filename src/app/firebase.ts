@@ -1,13 +1,12 @@
 //import firebase from 'firebase/app'
-
-const config = {
-    apiKey: "AIzaSyBKDJ6qVHk4sb_L1NkdUA2QyrHu6sS7gx4",
-    authDomain: "my-r-pocket.firebaseapp.com",
-    databaseURL: "https://my-r-pocket.firebaseio.com",
-    projectId: "my-r-pocket",
-    storageBucket: "my-r-pocket.appspot.com",
-    messagingSenderId: "844671207814",
-    appId: "1:844671207814:web:78980eacd7e8bdae"
+  const config = {
+    apiKey: "AIzaSyAYtferixUJ_ZsWjaJKPsv5THyD3Eghlz4",
+    authDomain: "kvsepang-12096.firebaseapp.com",
+    databaseURL: "https://kvsepang-12096.firebaseio.com",
+    projectId: "kvsepang-12096",
+    storageBucket: "kvsepang-12096.appspot.com",
+    messagingSenderId: "530965130177",
+    appId: "1:530965130177:web:98eef19f01084742f71d40"
   };
 
 export default config

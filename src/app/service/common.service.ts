@@ -23,6 +23,25 @@ export class CommonService {
 
 		await alert.present();
   }
+
+  async deleteConfirm(confirm, title) {
+    const alert = await this.alertController.create({
+      header: 'Confirm!',
+      message: 'Are you sure you want delete ' + title + '?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary'
+        }, {
+          text: 'DELETE',
+          handler: confirm
+        }
+      ]
+    });
+
+    await alert.present();
+  }
   
   async loading(){
     const loading = await this.loadingController.create({
@@ -30,18 +49,6 @@ export class CommonService {
     });
 
     return loading;
-  }
-
-  getImage(){
-    if(!this.image){
-      this.image = "assets/image/receipt.jpg";
-    }
-
-    return this.image;
-  }
-
-  setImage(base64){
-    this.image = base64;
   }
 
   setDetailId(deatildId){
